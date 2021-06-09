@@ -9,15 +9,23 @@
     <title>TV Show</title>
 </head>
 <body>
-<h1>TV Show #ID</h1> <a href= "http://localhost:8000/shows">Go back</a>
+<h1>TV Show {{ this_show.id }} </h1> <a href= "http://localhost:8000/shows">Go back</a>
     <p>Title: {{ this_show.title }}</p>
     <p>Network: {{ this_show.network }}</p>
     <p>Release Date: {{ this_show.release_date }}</p>
     <p>Description: {{ this_show.description }}</p>
     <br><br><br>
     <p>Last Updated: {{ this_show.updated_at }}</p>
-    <a href="https://www.w3schools.com/html/html_links.asp">Edit</a>
-    <a href= "https://www.w3schools.com/html/html_links.asp">Delete</a>
+    <!-- <a href="http://localhost:8000/shows/edit_this">Edit</a>
+    <a href= "http://localhost:8000/shows">Delete</a> -->
+    <form method='POST' action="http://localhost:8000/shows/edit_this">
+        {% csrf_token %}
+        <input type="submit" value="Edit" name="Edit">
+    </form>
+    <form method='GET' action="http://localhost:8000/shows/edit_this">
+        {% csrf_token %}
+        <input type="submit" value="Delete" name="Delete">
+    </form>
 
 </body>
 </html> 

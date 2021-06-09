@@ -12,7 +12,7 @@
 <h1>Add a New Show</h1>
     <form action="/shows/create" method='POST'>
         {% csrf_token %}
-        {{ form }}
+        <!-- {{ form }} -->
         <label for="title">Title:</label>
         <input class="title" type="text" name = "title">
         <br><br>
