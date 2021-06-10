@@ -9,6 +9,22 @@
     <title>Edit Show</title>
 </head>
 <body>
-<h1>Edit Show</h1>
+<h1>Edit Show {{ updated_show.id }}</h1> <a href= "http://localhost:8000/shows/{{ updated_show.id }}/update">Go back</a>
+<form action="/shows/{{ updated_show.id }}/update" method='POST'>
+    {% csrf_token %}
+    <!-- {{ form }} -->
+    <label for="title">Title:</label>
+    <input class="title" type="text" name = "title" value = "{{ updated_show.title }}">
+    <br><br>
+    <label for="network">Network:</label>
+    <input class="network" type="text" name = "network" value = "{{ updated_show.network }}">
+    <br><br>
+    <label for="release-date">Release Date:</label>
+    <input type="date" id="release-date" name="release-date" value = "{{ updated_show.release_date }}">
+    <p class = "description">Description:</p>
+    <textarea name="description">{{ updated_show.description }}</textarea>
+    <br><br> 
+    <input type="submit" value="Update" id = "button">
+</form>
 </body>
 </html> 

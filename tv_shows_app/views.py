@@ -4,15 +4,21 @@ from .models import *
 def add(request):
     return render(request, "add_show.html")
 
-def edit(request):
-    return render(request, "edit_show.html")
+def edit(request, id):
+    context = {
+        "updated_show": Shows.objects.get(id=id)
+    }
+    return render(request, 'edit_show.html', context)
 
-def edit_this(request): #similar to def create, we are performing an action then redirecting
-    if request.method == 'POST':
-        return redirect(f"/shows/{new_show.id}/edit")
-    elif request.method == 'GET':
-        return redirect('/shows/3')
-    return redirect('/shows/new')
+def update(request, id):
+    if request.method=='POST':
+        updated_show = Shows.objects.get(id=id)
+        updated_show.title=request.POST['title']
+        updated_show.network=request.POST['network']
+        updated_show.release_date=request.POST['release-date']
+        updated_show.description=request.POST['description']
+        updated_show.save()
+    return redirect('/shows') 
 
 def show(request, id): #has id in url, add id param
     context = {
@@ -34,3 +40,8 @@ def create(request):
         return redirect(f"/shows/{new_show.id}") #just needed to convert this to a f string to get it to read
         #redirects to def show
     return redirect('/shows/new')
+
+def delete(request, id):
+    delete_show = Shows.objects.get(id=id)
+    delete_show.delete()
+    return redirect('/shows')
