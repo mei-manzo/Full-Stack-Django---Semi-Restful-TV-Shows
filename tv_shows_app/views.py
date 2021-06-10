@@ -1,6 +1,9 @@
 from django.shortcuts import render, HttpResponse, redirect
 from .models import *
 
+def index(request):
+    return redirect('/shows')
+
 def add(request):
     return render(request, "add_show.html")
 
