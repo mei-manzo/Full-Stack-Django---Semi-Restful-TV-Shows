@@ -20,7 +20,7 @@
     <input class="network" type="text" name = "network" value = "{{ updated_show.network }}">
     <br><br>
     <label for="release-date">Release Date:</label>
-    <input type="date" id="release-date" name="release-date" value = "{{ updated_show.release_date }}">
+    <input type="date" id="release-date" name="release-date" value = "{{ updated_show.release_date|date:'Y-m-d' }}">
     <p class = "description">Description:</p>
     <textarea name="description">{{ updated_show.description }}</textarea>
     <br><br> 
